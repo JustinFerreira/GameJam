@@ -40,5 +40,29 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
+
+        if (IsGrounded() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        {
+            rb.velocity = Vector2.up * jumpForce;
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        float extraHeight = .15f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, extraHeight);
+        Color rayColor;
+        if (raycastHit.collider != null)
+        {
+            rayColor = Color.green;
+        }
+        else
+        {
+            rayColor = Color.red;
+        }
+        Debug.DrawRay(bc.bounds.center + new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.y), rayColor);
+        return raycastHit.collider != null;
     }
 }
