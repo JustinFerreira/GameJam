@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerController : MonoBehaviour
 {
     //Player Position Variable
@@ -17,40 +16,41 @@ public class PlayerController : MonoBehaviour
     
     public float jumpForce;
 
+    public float extraHeight;
+
+    [SerializeField] private LayerMask platforms;
+
+    public GameObject xrayObject;
+    private XRayVision xray;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         bc = this.GetComponent<BoxCollider2D>();
+        xray = xrayObject.GetComponent<XRayVision>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fHorizontal = Input.GetAxis("Horizontal"); //Get Player Position for Horizontal
-     
-        rb.velocity = new Vector2(fHorizontal * speed, rb.velocity.y); //Player Movement Left and Right
+        if (!xray.xrayActive)
+        {
+            fHorizontal = Input.GetAxis("Horizontal"); //Get Player Position for Horizontal
 
-        //Player Jump
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-        }
+            rb.velocity = new Vector2(fHorizontal * speed, rb.velocity.y); //Player Movement Left and Right
 
-        if (IsGrounded() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
-        {
-            rb.velocity = Vector2.up * jumpForce;
+            if (IsGrounded() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
         }
+       
     }
 
     private bool IsGrounded()
     {
-        float extraHeight = .15f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, extraHeight);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, extraHeight, platforms);
         Color rayColor;
         if (raycastHit.collider != null)
         {
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         }
         Debug.DrawRay(bc.bounds.center + new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.y), rayColor);
+        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.y * 2), rayColor);
         return raycastHit.collider != null;
     }
 }
