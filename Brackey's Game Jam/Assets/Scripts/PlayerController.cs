@@ -21,14 +21,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask platforms;
 
     public GameObject xrayObject;
-    private XRayVision xray;
+    private XRayController xray;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         bc = this.GetComponent<BoxCollider2D>();
-        xray = xrayObject.GetComponent<XRayVision>();
+        xray = xrayObject.GetComponent<XRayController>();
     }
 
     // Update is called once per frame
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!xray.xrayActive)
         {
+            rb.gravityScale = 1;
             fHorizontal = Input.GetAxis("Horizontal"); //Get Player Position for Horizontal
 
             rb.velocity = new Vector2(fHorizontal * speed, rb.velocity.y); //Player Movement Left and Right
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = Vector2.up * jumpForce;
             }
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0;
         }
        
     }
