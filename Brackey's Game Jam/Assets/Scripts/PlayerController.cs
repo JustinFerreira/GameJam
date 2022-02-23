@@ -27,44 +27,72 @@ public class PlayerController : MonoBehaviour
     public int health;
     public int rocks;
 
+    private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         bc = this.GetComponent<BoxCollider2D>();
         xray = xrayObject.GetComponent<XRayController>();
+        anim = gameObject.GetComponent<Animator>();
         health = 3;
+        rocks = 3;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!xray.xrayActive)
+        if (!xray.xrayActive) // If X-Ray is not active
         {
-            rb.gravityScale = 1;
-            fHorizontal = Input.GetAxis("Horizontal"); //Get Player Position for Horizontal
+            Time.timeScale = 1f; // Unfreeze time
 
-            rb.velocity = new Vector2(fHorizontal * speed, rb.velocity.y); //Player Movement Left and Right
+            fHorizontal = Input.GetAxis("Horizontal"); // Get Player Position for Horizontal
 
-            if (IsGrounded() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+            if (fHorizontal != 0) // if moving
             {
-                rb.velocity = Vector2.up * jumpForce;
+                anim.SetBool("walking", true); // start walking animation
+            }
+            else // if not moving
+            {
+                anim.SetBool("walking", false); // stop walking animation
+            }
+            if (fHorizontal < 0) // if moving left
+            {
+                this.gameObject.transform.localScale = new Vector2(-1, 1); // face player to left
+            }
+            else if (fHorizontal > 0) // if moving right
+            {
+                this.gameObject.transform.localScale = new Vector2(1, 1); // face player to right
+            }
+
+            rb.velocity = new Vector2(fHorizontal * speed, rb.velocity.y); // Move player in direction of input
+
+            if (IsGrounded() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) // If player is touching the ground and jumps
+            {
+                rb.velocity = Vector2.up * jumpForce; // Jump
+            }
+
+            if (rocks > 0 && Input.GetKeyDown(KeyCode.C)) // if player has rocks and presses C
+            {
+                anim.SetTrigger("shoot"); // shoot animation
+                rocks -= 1; // lose 1 rock
             }
         }
-        else
+        else // If X-Ray is active
         {
-            rb.velocity = Vector2.zero;
-            rb.gravityScale = 0;
+            Time.timeScale = 0f; // Freeze time
         }
 
-        if(health == 0)
+        if(health == 0) // If dead
         {
-            GameOver();
+            GameOver(); 
         }
        
     }
 
-    private bool IsGrounded()
+    private bool IsGrounded() // Function to test if player is touching the ground
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, bc.bounds.size, 0f, Vector2.down, extraHeight, platforms);
         Color rayColor;
@@ -84,6 +112,7 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
-        Physics2D.IgnoreLayerCollision(7, 6);
+        //Physics2D.IgnoreLayerCollision(7, 6); // Player ignores terrain collisions, falls off map
+        Destroy(bc);
     }
 }
