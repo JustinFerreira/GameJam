@@ -23,12 +23,17 @@ public class PlayerController : MonoBehaviour
     public GameObject xrayObject;
     private XRayController xray;
 
+    //Player Stats
+    public int health;
+    public int rocks;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         bc = this.GetComponent<BoxCollider2D>();
         xray = xrayObject.GetComponent<XRayController>();
+        health = 3;
     }
 
     // Update is called once per frame
@@ -51,6 +56,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.gravityScale = 0;
         }
+
+        if(health == 0)
+        {
+            GameOver();
+        }
        
     }
 
@@ -70,5 +80,10 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.y * 2), rayColor);
         return raycastHit.collider != null;
+    }
+
+    private void GameOver()
+    {
+        Physics2D.IgnoreLayerCollision(7, 6);
     }
 }

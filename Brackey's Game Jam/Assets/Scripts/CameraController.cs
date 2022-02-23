@@ -16,14 +16,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((player.transform.position - lastPos).x > 0)
-        {
-            gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, this.transform.position.z);
-            lastPos = gameObject.transform.position;
-        }
-        else
-        {
-            gameObject.transform.position = new Vector3(this.transform.position.x, player.transform.position.y, this.transform.position.z);
-        }
+        //Camera Being Pinned to Character
+        gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, this.transform.position.z);
     }
 }
