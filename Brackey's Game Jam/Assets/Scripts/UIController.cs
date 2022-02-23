@@ -11,7 +11,8 @@ public class UIController : MonoBehaviour
     public GameObject p;
     public TextMeshProUGUI healthLabel;
     public TextMeshProUGUI gameOverText;
-    public Button playAgain; 
+    public Button playAgain;
+    public TextMeshProUGUI rocksText;
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +27,9 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //HealthReader(player.health);
         healthLabel.text = "Health: " + player.health;
+
+        rocksText.text = "Rocks: " + player.rocks;
 
         if (player.health <= 0)
         {

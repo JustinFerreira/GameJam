@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     //Player Position Variable
     private float fHorizontal;
+    public bool left;
+    public float shotForce;
 
     //Colliders
     private Rigidbody2D rb;
@@ -29,6 +31,9 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    public Transform slingshot;
+    public GameObject rock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +43,7 @@ public class PlayerController : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         health = 3;
         rocks = 3;
-
+        shotForce = 5f;
     }
 
     // Update is called once per frame
@@ -60,10 +65,12 @@ public class PlayerController : MonoBehaviour
             }
             if (fHorizontal < 0) // if moving left
             {
+                left = true;
                 this.gameObject.transform.localScale = new Vector2(-1, 1); // face player to left
             }
             else if (fHorizontal > 0) // if moving right
             {
+                left = false;
                 this.gameObject.transform.localScale = new Vector2(1, 1); // face player to right
             }
 
@@ -74,11 +81,22 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector2.up * jumpForce; // Jump
             }
 
-            if (rocks > 0 && Input.GetKeyDown(KeyCode.C)) // if player has rocks and presses C
+            if (rocks > 0 && Input.GetKey(KeyCode.C)) // if player has rocks and presses C
+            {
+                if (shotForce < 20)
+                {
+                    shotForce += (Time.deltaTime * 3); // increases shotforce while holding c
+                }
+                
+            }
+
+            if (rocks > 0 && Input.GetKeyUp(KeyCode.C)) // if player has rocks and presses C
             {
                 anim.SetTrigger("shoot"); // shoot animation
+                Instantiate(rock, slingshot);
                 rocks -= 1; // lose 1 rock
             }
+
         }
         else // If X-Ray is active
         {
