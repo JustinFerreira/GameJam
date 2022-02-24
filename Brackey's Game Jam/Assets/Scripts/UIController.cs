@@ -9,10 +9,17 @@ public class UIController : MonoBehaviour
 {
     private PlayerController player;
     public GameObject p;
-    public TextMeshProUGUI healthLabel;
     public TextMeshProUGUI gameOverText;
     public Button playAgain;
-    public TextMeshProUGUI rocksText;
+
+    //Heart gameObjects
+    public GameObject heart1;
+    public GameObject heart2;
+    public GameObject heart3;
+
+    //Rock gameObjects
+    public TextMeshProUGUI rockNum;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +34,6 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthLabel.text = "Health: " + player.health;
-
-        rocksText.text = "Rocks: " + player.rocks;
 
         if (player.health <= 0)
         {
@@ -43,15 +47,39 @@ public class UIController : MonoBehaviour
 
             
         }
-    }
 
-    private void HealthReader(int prevHealth)
-    {
-        if (player.health != prevHealth)
+        if(player.health == 3)
         {
-            healthLabel.text = "Health: " + player.health;
+            heart1.SetActive(true);
+            heart2.SetActive(true);
+            heart3.SetActive(true);
+
         }
-    }
+        else if (player.health == 2)
+        {
+            heart1.SetActive(true);
+            heart2.SetActive(true);
+            heart3.SetActive(false);
+
+        }
+        else if (player.health == 1)
+        {
+            heart1.SetActive(true);
+            heart2.SetActive(false);
+            heart3.SetActive(false);
+
+        }
+        else if (player.health == 0)
+        {
+            heart1.SetActive(false);
+            heart2.SetActive(false);
+            heart3.SetActive(false);
+
+        }
+
+        rockNum.text = "" + player.rocks;
+    } 
+
 
     void PlayAgain()
     {
