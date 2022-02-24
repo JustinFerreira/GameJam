@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: 5a68e5691dd06234dbd69188b9f65c52
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3837765059224673121
+    second: Rainbow_Mushroom_SpriteSheet_0
+  - first:
+      213: -8063410455026708489
+    second: Rainbow_Mushroom_SpriteSheet_1
+  - first:
+      213: -7878239375572605105
+    second: Rainbow_Mushroom_SpriteSheet_2
+  - first:
+      213: 465485923179117228
+    second: Rainbow_Mushroom_SpriteSheet_3
+  - first:
+      213: 6537460831775408756
+    second: Rainbow_Mushroom_SpriteSheet_4
+  - first:
+      213: 5390955351717151406
+    second: Rainbow_Mushroom_SpriteSheet_5
+  - first:
+      213: -7394711360515516122
+    second: Rainbow_Mushroom_SpriteSheet_6
+  - first:
+      213: 6613915549940103117
+    second: Rainbow_Mushroom_SpriteSheet_7
+  - first:
+      213: 5601197632530007177
+    second: Rainbow_Mushroom_SpriteSheet_8
+  - first:
+      213: 8396811945924823534
+    second: Rainbow_Mushroom_SpriteSheet_9
+  - first:
+      213: 6320688344309433950
+    second: Rainbow_Mushroom_SpriteSheet_10
+  - first:
+      213: -6898274364144731661
+    second: Rainbow_Mushroom_SpriteSheet_11
+  - first:
+      213: 640684842546434865
+    second: Rainbow_Mushroom_SpriteSheet_12
+  - first:
+      213: 3567184779898243767
+    second: Rainbow_Mushroom_SpriteSheet_13
+  - first:
+      213: 5557347634758624481
+    second: Rainbow_Mushroom_SpriteSheet_14
+  - first:
+      213: 8632968652361385360
+    second: Rainbow_Mushroom_SpriteSheet_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,12 +89,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 240
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,7 +149,343 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1680
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b1e7eecfa724530800000000000000
+      internalID: 3837765059224673121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1680
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff46f5b9e2091090800000000000000
+      internalID: -8063410455026708489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 1680
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f47ef73570fdaa290800000000000000
+      internalID: -7878239375572605105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 1680
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caa390b1bfcb57600800000000000000
+      internalID: 465485923179117228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 1168
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 472c0035df9b9ba50800000000000000
+      internalID: 6537460831775408756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 1168
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea28713745580da40800000000000000
+      internalID: 5390955351717151406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 1168
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6295deb4235b06990800000000000000
+      internalID: -7394711360515516122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 1168
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc7bc90962959cb50800000000000000
+      internalID: 6613915549940103117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 656
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 984c5b302937bbd40800000000000000
+      internalID: 5601197632530007177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 656
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee90b920af7778470800000000000000
+      internalID: 8396811945924823534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 656
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56048a8f8897b750800000000000000
+      internalID: 6320688344309433950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 656
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f938f1b3086440a0800000000000000
+      internalID: -6898274364144731661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 144
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13315f4487b24e800800000000000000
+      internalID: 640684842546434865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 144
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bac30658af218130800000000000000
+      internalID: 3567184779898243767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 144
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4252fca3aaf1d40800000000000000
+      internalID: 5557347634758624481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rainbow_Mushroom_SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 1704
+        y: 144
+        width: 168
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0954519ff377ec770800000000000000
+      internalID: 8632968652361385360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

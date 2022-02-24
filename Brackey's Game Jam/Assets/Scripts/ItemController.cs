@@ -38,8 +38,35 @@ public class ItemController : MonoBehaviour
             {
                 x.hiddenObjects.Remove(this.gameObject);
             }
-            pController.rocks += 1;
-            Destroy(this.gameObject);
+            if (this.gameObject.tag == "Rock")
+            {
+                pController.rocks += 1;
+                Destroy(this.gameObject);
+            }
+            else if (this.gameObject.tag == "Heart")
+            {
+                if (pController.health < 3)
+                {
+                    pController.health += 1;
+                    Destroy(this.gameObject);
+                }
+                
+            }
+            else if (this.gameObject.tag == "Shroom")
+            {
+                if (x.xRayPower < 10)
+                {
+                    x.xRayPower += 3;
+                    if (x.xRayPower > 10)
+                    {
+                        x.xRayPower = 10;
+                    }
+                    Destroy(this.gameObject);
+                }
+                
+                
+            }
+            
         }
         
     }

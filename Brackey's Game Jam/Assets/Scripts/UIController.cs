@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+    private GameObject xray;
+    private XRayController x;
     private PlayerController player;
     public GameObject p;
     public TextMeshProUGUI gameOverText;
     public Button playAgain;
+    public Slider xRaySlider;
 
     //Heart gameObjects
     public GameObject heart1;
@@ -24,6 +27,8 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        xray = GameObject.FindGameObjectWithTag("XRay");
+        x = xray.GetComponent<XRayController>();
         player = p.GetComponent<PlayerController>();
         gameOverText.gameObject.SetActive(false);
         gameOverText.alpha = 0;
@@ -34,6 +39,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        xRaySlider.value = x.xRayPower;
 
         if (player.health <= 0)
         {
