@@ -34,21 +34,39 @@ public class PlayerController : MonoBehaviour
     public Transform slingshot;
     public GameObject rock;
 
+    public bool hurt;
+    public bool knockLeft;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
-        bc = this.GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
         xray = xrayObject.GetComponent<XRayController>();
         anim = gameObject.GetComponent<Animator>();
         health = 3;
         rocks = 3;
         shotForce = 5f;
+        hurt = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hurt)
+        {
+            health -= 1;
+            anim.SetTrigger("hurt");
+            if (knockLeft)
+            {
+                rb.AddForce(Vector2.left * 1000);
+            }
+            else
+            {
+                rb.AddForce(Vector2.right * 1000);
+            }
+            hurt = false;
+        }
         if (!xray.xrayActive) // If X-Ray is not active
         {
             Time.timeScale = 1f; // Unfreeze time
@@ -124,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
         Debug.DrawRay(bc.bounds.center + new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.y * 2), rayColor);
+        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.x * 2), rayColor);
         return raycastHit.collider != null;
     }
 

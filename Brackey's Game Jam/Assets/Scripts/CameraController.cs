@@ -16,6 +16,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         //Camera Being Pinned to Character
-        gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, this.transform.position.z);
+        gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, this.transform.position.z);
     }
 }

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2183044598810476761}
   - component: {fileID: 6730440333806429108}
   - component: {fileID: 4408372331180493299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mushroom Man
-  m_TagString: Untagged
+  m_TagString: MushroomMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,13 +74,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5a74c99b19af5b3449465e72e19d2cdd, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 9109925231981182439, guid: 5a74c99b19af5b3449465e72e19d2cdd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 1.2, y: 1.72}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -117,6 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 396c98b3e10f3dd4a85797cca0b922c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xPatrolRangeMin: 35.62
+  xPatrolRangeMax: 43.31
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!61 &6730440333806429108
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,18 +135,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01689148, y: 0.00000023841858}
+  m_Offset: {x: 0.01689148, y: 0.034869313}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
-    newSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 1.2, y: 1.72}
+    newSize: {x: 1.2, y: 1.72}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1749258, y: 1.7830067}
+  m_Size: {x: 1.1749258, y: 1.7132685}
   m_EdgeRadius: 0
 --- !u!50 &4408372331180493299
 Rigidbody2D:
@@ -155,7 +160,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -163,4 +168,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

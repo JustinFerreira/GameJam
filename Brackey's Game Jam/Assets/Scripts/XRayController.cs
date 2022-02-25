@@ -26,6 +26,7 @@ public class XRayController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerBc = player.GetComponent<BoxCollider2D>();
         fakeMapRenderer = fakeTileMap.gameObject.GetComponent<TilemapRenderer>();
         hiddenMapRenderer = hiddenTileMap.gameObject.GetComponent<TilemapRenderer>();
         xRayPower = 10;
@@ -37,10 +38,13 @@ public class XRayController : MonoBehaviour
         {
             hiddenObjects.Add(t.gameObject); // add to hidden object list
         }
-        playerBc = player.GetComponent<BoxCollider2D>(); 
         foreach (GameObject fake in fakeObjects) // for each fake object
         {
             bc = fake.GetComponent<BoxCollider2D>(); // get their box collider
+            if (fake.tag == "Platform")
+            {
+                Destroy(bc);
+            }
             Physics2D.IgnoreCollision(bc, playerBc); // make it so they don't collide with the player
         }
     }
@@ -50,7 +54,7 @@ public class XRayController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && xRayPower > 0) // if press space
         {
-            xRayPower -= (Time.unscaledDeltaTime * 2);
+            xRayPower -= (Time.unscaledDeltaTime);
             xrayActive = true; // x ray is active
             panel.gameObject.SetActive(true); // set screen tint active
             foreach (GameObject hiddenObject in hiddenObjects) // for each hidden object

@@ -49,6 +49,16 @@ public class RockController : MonoBehaviour
         {
 
         }
+        else if (collision.gameObject.tag == "MushroomMan")
+        {
+            if (xRay.hiddenObjects.Contains(collision.gameObject))
+            {
+                xRay.hiddenObjects.Remove(collision.gameObject);
+            }
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+
         else
         {
             Destroy(gameObject);
