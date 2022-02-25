@@ -37,9 +37,13 @@ public class PlayerController : MonoBehaviour
     public bool hurt;
     public bool knockLeft;
 
+    private GameController gameController;
+
+    
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         xray = xrayObject.GetComponent<XRayController>();
@@ -48,6 +52,7 @@ public class PlayerController : MonoBehaviour
         rocks = 3;
         shotForce = 5f;
         hurt = false;
+        transform.position = gameController.lastCheckpointPos;
     }
 
     // Update is called once per frame
@@ -139,10 +144,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             rayColor = Color.red;
+        } // make the box inside the boxcollider box so it cant get triggered when he runs into something
+        Debug.DrawRay(bc.bounds.center + new Vector3(bc.bounds.extents.x - .2f, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x - .2f, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x - .2f, bc.bounds.extents.y + extraHeight), Vector2.right * ((bc.bounds.extents.x - .2f) * 2), rayColor);
+        if (raycastHit.collider != null)
+        {
+            if (raycastHit.collider.gameObject.CompareTag("MushroomMan"))
+            {
+                MushroomManController shroom = raycastHit.collider.gameObject.GetComponent<MushroomManController>();
+                shroom.dead = true;
+            }
         }
-        Debug.DrawRay(bc.bounds.center + new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, 0), Vector2.down * (bc.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(bc.bounds.center - new Vector3(bc.bounds.extents.x, bc.bounds.extents.y + extraHeight), Vector2.right * (bc.bounds.extents.x * 2), rayColor);
         return raycastHit.collider != null;
     }
 

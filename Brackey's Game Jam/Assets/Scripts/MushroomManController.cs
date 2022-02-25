@@ -24,8 +24,8 @@ public class MushroomManController : MonoBehaviour
     private bool facingLeft;
     private PlayerController p;
     private bool ready;
-
     private float t;
+    public bool dead;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,43 +44,55 @@ public class MushroomManController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (!ready)
+        if (!xRay.fakeObjects.Contains(gameObject))
         {
-            if (t > 0)
+            if (dead)
             {
-                t -= Time.unscaledDeltaTime;
+                Destroy(GetComponent<BoxCollider2D>());
             }
-            if (t <= 0)
+            else
             {
-                ready = true;
-                t = 2f;
-            }
-        }
-        if (facingLeft && ready)
-        {
-            hits = Physics2D.OverlapCircleAll(transform.position + new Vector3(-0.428f, .15f, 0), attackRange, playerLayer);
-        }
-        else if (!facingLeft && ready)
-        {
-            hits = Physics2D.OverlapCircleAll(transform.position + new Vector3(0.428f, .15f, 0), attackRange, playerLayer);
-        }
-        if (ready)
-        {
-            foreach (Collider2D hit in hits)
-            {
-                ready = false;
-                p.hurt = true;
-                if (facingLeft)
+                if (!ready)
                 {
-                    p.knockLeft = true;
+                    if (t > 0)
+                    {
+                        t -= Time.unscaledDeltaTime;
+                    }
+                    if (t <= 0)
+                    {
+                        ready = true;
+                        t = 2f;
+                    }
                 }
-                else
+                if (facingLeft && ready)
                 {
-                    p.knockLeft = false;
+                    hits = Physics2D.OverlapCircleAll(transform.position + new Vector3(-0.428f, .15f, 0), attackRange, playerLayer);
                 }
+                else if (!facingLeft && ready)
+                {
+                    hits = Physics2D.OverlapCircleAll(transform.position + new Vector3(0.428f, .15f, 0), attackRange, playerLayer);
+                }
+                if (ready)
+                {
+                    foreach (Collider2D hit in hits)
+                    {
+                        ready = false;
+                        p.hurt = true;
+                        if (facingLeft)
+                        {
+                            p.knockLeft = true;
+                        }
+                        else
+                        {
+                            p.knockLeft = false;
+                        }
 
+                    }
+                }
             }
+            
         }
+        
         
 
         if (xRay.fakeObjects.Contains(gameObject))

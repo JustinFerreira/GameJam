@@ -89,6 +89,6 @@ public class UIController : MonoBehaviour
 
     void PlayAgain()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
