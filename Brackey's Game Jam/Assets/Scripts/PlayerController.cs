@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     public bool hurt;
     public bool knockLeft;
+    public bool isPaused;
 
     private GameController gameController;
 
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (hurt)
         {
             health -= 1;
@@ -120,17 +122,28 @@ public class PlayerController : MonoBehaviour
                 rocks -= 1; // lose 1 rock
             }
 
+            if (Input.GetKeyUp(KeyCode.P))
+            {
+                isPaused = !isPaused;
+            }
+
+        }
+        else if(isPaused == true)
+        {
+            Time.timeScale = 0f; // Freeze time
         }
         else // If X-Ray is active
         {
             Time.timeScale = 0f; // Freeze time
+            
         }
 
         if(health == 0) // If dead
         {
             GameOver(); 
         }
-       
+
+        
     }
 
     private bool IsGrounded() // Function to test if player is touching the ground
