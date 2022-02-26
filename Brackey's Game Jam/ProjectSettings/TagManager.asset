@@ -10,6 +10,9 @@ TagManager:
   - Shroom
   - MushroomMan
   - Platform
+  - Ignore
+  - WallShroom
+  - Bullet
   layers:
   - Default
   - TransparentFX

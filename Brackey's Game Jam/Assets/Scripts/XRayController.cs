@@ -15,7 +15,7 @@ public class XRayController : MonoBehaviour
     private BoxCollider2D playerBc;
     public Transform fakeParent;
     public Transform hiddenParent;
-
+    private Animator anim;
     public float xRayPower;
 
     public Tilemap hiddenTileMap;
@@ -40,12 +40,33 @@ public class XRayController : MonoBehaviour
         }
         foreach (GameObject fake in fakeObjects) // for each fake object
         {
-            bc = fake.GetComponent<BoxCollider2D>(); // get their box collider
-            if (fake.tag == "Platform")
+
+            if (fake.transform.childCount > 0)
             {
-                Destroy(bc);
+                foreach (Transform fakeChild in fake.transform)
+                {
+                    if (fakeChild.gameObject.CompareTag("Ignore"))
+                    {
+
+                    }
+                    else
+                    {
+                        bc = fakeChild.gameObject.GetComponent<BoxCollider2D>();
+                        Physics2D.IgnoreCollision(bc, playerBc);
+                    }
+
+                }
             }
-            Physics2D.IgnoreCollision(bc, playerBc); // make it so they don't collide with the player
+            else
+            {
+                bc = fake.GetComponent<BoxCollider2D>(); // get their box collider
+
+                if (fake.tag == "Platform")
+                {
+                    Destroy(bc);
+                }
+                Physics2D.IgnoreCollision(bc, playerBc); // make it so they don't collide with the player
+            }
         }
     }
 
@@ -59,15 +80,72 @@ public class XRayController : MonoBehaviour
             panel.gameObject.SetActive(true); // set screen tint active
             foreach (GameObject hiddenObject in hiddenObjects) // for each hidden object
             {
-                spriteRenderer = hiddenObject.GetComponent<SpriteRenderer>(); // get hidden object's sprite renderer
-                spriteRenderer.enabled = true; // set it true
+
+                if (hiddenObject.transform.childCount > 0)
+                {
+                    foreach (Transform hiddenChild in hiddenObject.transform)
+                    {
+                        if (hiddenChild.gameObject.CompareTag("Ignore"))
+                        {
+
+                        }
+                        else
+                        {
+                            spriteRenderer = hiddenChild.GetComponent<SpriteRenderer>();
+                            spriteRenderer.enabled = true;
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (hiddenObject.gameObject.CompareTag("Bullet"))
+                    {
+                        anim = hiddenObject.GetComponent<Animator>();
+                        anim.enabled = true;
+                    }
+                    else
+                    {
+                        spriteRenderer = hiddenObject.GetComponent<SpriteRenderer>(); // get hidden object's sprite renderer
+                        spriteRenderer.enabled = true; // set it true
+                    }
+                    
+                }
             }
             hiddenMapRenderer.enabled = true;
             foreach(GameObject fake in fakeObjects) // for each fake object
             {
-                spriteRenderer = fake.GetComponent<SpriteRenderer>(); // get fake object's sprite renderer
-                spriteRenderer.enabled = false; // set it false
-                
+
+                if (fake.transform.childCount > 0)
+                {
+                    foreach (Transform fakeChild in fake.transform)
+                    {
+                        if (fakeChild.gameObject.CompareTag("Ignore"))
+                        {
+
+                        }
+                        else
+                        {
+                            spriteRenderer = fakeChild.GetComponent<SpriteRenderer>();
+                            spriteRenderer.enabled = false;
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (fake.gameObject.CompareTag("Bullet"))
+                    {
+                        anim = fake.GetComponent<Animator>();
+                        anim.enabled = false;
+                    }
+                    else
+                    {
+                        spriteRenderer = fake.GetComponent<SpriteRenderer>(); // get fake object's sprite renderer
+                        spriteRenderer.enabled = false; // set it false
+                    }
+                    
+                }
             }
             fakeMapRenderer.enabled = false;
         }
@@ -77,14 +155,72 @@ public class XRayController : MonoBehaviour
             panel.gameObject.SetActive(false);
             foreach (GameObject hiddenObject in hiddenObjects)
             {
-                spriteRenderer = hiddenObject.GetComponent<SpriteRenderer>();
-                spriteRenderer.enabled = false;
+
+                if (hiddenObject.transform.childCount > 0)
+                {
+                    foreach (Transform hiddenChild in hiddenObject.transform)
+                    {
+                        if (hiddenChild.gameObject.CompareTag("Ignore"))
+                        {
+
+                        }
+                        else
+                        {
+                            spriteRenderer = hiddenChild.GetComponent<SpriteRenderer>();
+                            spriteRenderer.enabled = false;
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (hiddenObject.gameObject.CompareTag("Bullet"))
+                    {
+                        anim = hiddenObject.GetComponent<Animator>();
+                        anim.enabled = false;
+                    }
+                    else
+                    {
+                        spriteRenderer = hiddenObject.GetComponent<SpriteRenderer>();
+                        spriteRenderer.enabled = false;
+                    }
+                    
+                }
             }
             hiddenMapRenderer.enabled = false;
             foreach (GameObject fake in fakeObjects)
             {
-                spriteRenderer = fake.GetComponent<SpriteRenderer>();
-                spriteRenderer.enabled = true;
+
+                if (fake.transform.childCount > 0)
+                {
+                    foreach (Transform fakeChild in fake.transform)
+                    {
+                        if (fakeChild.gameObject.CompareTag("Ignore"))
+                        {
+
+                        }
+                        else
+                        {
+                            spriteRenderer = fakeChild.GetComponent<SpriteRenderer>();
+                            spriteRenderer.enabled = true;
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (fake.gameObject.CompareTag("Bullet"))
+                    {
+                        anim = fake.GetComponent<Animator>();
+                        anim.enabled = true;
+                    }
+                    else
+                    {
+                        spriteRenderer = fake.GetComponent<SpriteRenderer>();
+                        spriteRenderer.enabled = true;
+                    }
+                    
+                }
             }
             fakeMapRenderer.enabled = true;
         }

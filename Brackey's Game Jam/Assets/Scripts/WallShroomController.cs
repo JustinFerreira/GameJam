@@ -51,7 +51,6 @@ public class WallShroomController : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("Shoot");
         anim.SetTrigger("shoot");
         Instantiate(bullet, attackPoint);
     }

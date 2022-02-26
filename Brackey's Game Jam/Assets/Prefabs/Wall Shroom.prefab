@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9141110606492241432}
   m_Layer: 0
   m_Name: AttackPoint
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 9141110607629599135}
   m_Layer: 0
   m_Name: Wall Shroom
-  m_TagString: Untagged
+  m_TagString: WallShroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitTime: 3
   bullet: {fileID: 5228401869527422366, guid: 9b57060671bb54c4281ddc865b7402f9, type: 3}
-  left: 1
-  right: 0
-  up: 0
-  down: 0
