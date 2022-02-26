@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             }
             hurt = false;
         }
-        if (!xray.xrayActive) // If X-Ray is not active
+        if (!xray.xrayActive && !xray.paused) // If X-Ray is not active
         {
             Time.timeScale = 1f; // Unfreeze time
 
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector2.up * jumpForce; // Jump
             }
 
-            if (rocks > 0 && Input.GetKey(KeyCode.C)) // if player has rocks and presses C
+            if (rocks > 0 && Input.GetKey(KeyCode.Space)) // if player has rocks and presses C
             {
                 if (shotForce < 20)
                 {
@@ -115,28 +115,15 @@ public class PlayerController : MonoBehaviour
                 
             }
 
-            if (rocks > 0 && Input.GetKeyUp(KeyCode.C)) // if player has rocks and presses C
+            if (rocks > 0 && Input.GetKeyUp(KeyCode.Space)) // if player has rocks and presses C
             {
                 anim.SetTrigger("shoot"); // shoot animation
                 Instantiate(rock, slingshot);
                 rocks -= 1; // lose 1 rock
             }
 
-            if (Input.GetKeyUp(KeyCode.P))
-            {
-                isPaused = !isPaused;
-            }
+        }
 
-        }
-        else if(isPaused == true)
-        {
-            Time.timeScale = 0f; // Freeze time
-        }
-        else // If X-Ray is active
-        {
-            Time.timeScale = 0f; // Freeze time
-            
-        }
 
         if(health == 0) // If dead
         {

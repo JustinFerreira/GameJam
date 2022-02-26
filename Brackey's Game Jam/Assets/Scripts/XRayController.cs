@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class XRayController : MonoBehaviour
 {
@@ -22,10 +24,19 @@ public class XRayController : MonoBehaviour
     public Tilemap fakeTileMap;
     private TilemapRenderer fakeMapRenderer;
     private TilemapRenderer hiddenMapRenderer;
+    public bool paused;
+    public GameObject pauseScreen;
+    public Button resume;
+    public Button returnToMainMenu;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        pauseScreen.SetActive(false);
+        resume.onClick.AddListener(Resume);
+        returnToMainMenu.onClick.AddListener(Return);
+        paused = false;
         playerBc = player.GetComponent<BoxCollider2D>();
         fakeMapRenderer = fakeTileMap.gameObject.GetComponent<TilemapRenderer>();
         hiddenMapRenderer = hiddenTileMap.gameObject.GetComponent<TilemapRenderer>();
@@ -73,7 +84,24 @@ public class XRayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && xRayPower > 0) // if press space
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paused = !paused;
+            if (paused)
+            {
+                Time.timeScale = 0f;
+                pauseScreen.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                pauseScreen.SetActive(false);
+            }
+        }
+
+
+
+        if (Input.GetKey(KeyCode.X) && xRayPower > 0) // if press space
         {
             xRayPower -= (Time.unscaledDeltaTime);
             xrayActive = true; // x ray is active
@@ -224,5 +252,15 @@ public class XRayController : MonoBehaviour
             }
             fakeMapRenderer.enabled = true;
         }
+    }
+    void Return()
+    {
+        SceneManager.LoadScene(0);
+    }
+    void Resume()
+    {
+        paused = false;
+        Time.timeScale = 1f;
+        pauseScreen.SetActive(false);
     }
 }
