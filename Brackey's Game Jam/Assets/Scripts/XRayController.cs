@@ -34,7 +34,7 @@ public class XRayController : MonoBehaviour
         {
             fakeObjects.Add(t.gameObject); // add to fake object list
         }
-        foreach (Transform t in hiddenParent) // for every of the Hidden Objects empty in the scene
+        foreach (Transform t in hiddenParent) // for every child of the Hidden Objects empty in the scene
         {
             hiddenObjects.Add(t.gameObject); // add to hidden object list
         }
