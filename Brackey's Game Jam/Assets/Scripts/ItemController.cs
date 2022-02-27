@@ -41,6 +41,7 @@ public class ItemController : MonoBehaviour
             if (this.gameObject.tag == "Rock")
             {
                 pController.rocks += 1;
+                SfxManager.SfxInstance.Audio.PlayOneShot(SfxManager.SfxInstance.PickUp);
                 Destroy(this.gameObject);
             }
             else if (this.gameObject.tag == "Heart")
@@ -48,6 +49,7 @@ public class ItemController : MonoBehaviour
                 if (pController.health < 3)
                 {
                     pController.health += 1;
+                    SfxManager.SfxInstance.Audio.PlayOneShot(SfxManager.SfxInstance.PickUp);
                     Destroy(this.gameObject);
                 }
                 
@@ -57,6 +59,7 @@ public class ItemController : MonoBehaviour
                 if (x.xRayPower < 10)
                 {
                     x.xRayPower += 3;
+                    SfxManager.SfxInstance.Audio.PlayOneShot(SfxManager.SfxInstance.PickUp);
                     if (x.xRayPower > 10)
                     {
                         x.xRayPower = 10;

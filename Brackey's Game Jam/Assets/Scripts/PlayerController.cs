@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
        
         if (hurt)
         {
+            SfxManager.SfxInstance.Audio.PlayOneShot(SfxManager.SfxInstance.Hit);
             health -= 1;
             anim.SetTrigger("hurt");
             if (knockLeft)
@@ -103,6 +104,7 @@ public class PlayerController : MonoBehaviour
 
             if (IsGrounded() && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))) // If player is touching the ground and jumps
             {
+                SfxManager.SfxInstance.Audio.PlayOneShot(SfxManager.SfxInstance.Jump);
                 rb.velocity = Vector2.up * jumpForce; // Jump
             }
 
@@ -118,6 +120,7 @@ public class PlayerController : MonoBehaviour
             if (rocks > 0 && Input.GetKeyUp(KeyCode.Space)) // if player has rocks and presses C
             {
                 anim.SetTrigger("shoot"); // shoot animation
+                SfxManager.SfxInstance.Audio.PlayOneShot(SfxManager.SfxInstance.Rock);
                 Instantiate(rock, slingshot);
                 rocks -= 1; // lose 1 rock
             }
